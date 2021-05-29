@@ -11,7 +11,6 @@ $IdUtente = $IdUtente["IdUtente"];
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Theme Made By www.w3schools.com - No Copyright -->
         <title>Concorsi esposizioni cani e gatti</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -154,12 +153,8 @@ $IdUtente = $IdUtente["IdUtente"];
                     echo "<p>Data: " . $data . "</p>\n";
                     echo "<p>Luogo: " . $luogo . "</p>\n"; 
                     if ($animale == "cani"){
-                        //echo "<button class='btn' data-toggle='modal' data-target='#myModal' name='Concorso$IdConcorso'>Iscrivi il tuo cane!</button>\n";
-                        //echo "<a type='button' class='btn text-center' href='#Login'>Iscrivi il tuo cane!</a>";
                         echo "<a type='button' class='btn text-center' href='iscrizione.php?IdConcorso=$IdConcorso&animale=$animale'>Iscrivi il tuo cane!</a>";
                     }else{
-                        //echo "<button class='btn' data-toggle='modal' data-target='#myModal' name='$IdConcorso'>Iscrivi il tuo gatto!</button>\n";
-                        //echo "<a type='button' class='btn text-center' href='#Login'>Iscrivi il tuo gatto!</a>";
                         echo "<a type='button' class='btn text-center' href='iscrizione.php?IdConcorso=$IdConcorso&animale=$animale'>Iscrivi il tuo gatto!</a>";
                     }
                     echo "</div>\n";

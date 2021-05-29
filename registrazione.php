@@ -3,20 +3,20 @@ include("config.php");
 $username_err = $password_err = $confirm_password_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_POST["registrationButton"])){
-    echo "ciao";
     // Validate username
     if(empty(trim($_POST["usernameSignUp"]))){
       $username_err = "Please enter a username.";
     } else{
+      // Prepared statement to search a user
       $sql = "SELECT IdUtente FROM utente WHERE username = ?";
       if($stmt = mysqli_prepare($db, $sql)){
           mysqli_stmt_bind_param($stmt, "s", $param_username);
           $param_username = trim($_POST["usernameSignUp"]);
           // Attempt to execute the prepared statement
           if(mysqli_stmt_execute($stmt)){
-              /* store result */
+              // store result
               mysqli_stmt_store_result($stmt);
-              if(mysqli_stmt_num_rows($stmt) == 1){
+              if(mysqli_stmt_num_rows($stmt) == 1){ // Controls if there is a user with the username given by the form
                   $username_err = "This username is already taken.";
               } else{
                   $username = trim($_POST["usernameSignUp"]);
@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
-        // Prepared statement for sign up
+        // Prepared statement for registration
         $sql = "INSERT INTO utente (username, password, ruolo) VALUES (?, ?, 'utente')";
         if($stmt = mysqli_prepare($db, $sql)){
 
@@ -75,7 +75,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
     <title>Esposizioni cani e gatti</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -1,13 +1,12 @@
 <?php
     include("config.php");
     session_start();
-    $username = $password = $confirm_password = "";
-    $username_err = $password_err = $confirm_password_err = "";
-    // Login and Registration
+    $username_err = $password_err = "";
+    // Login
     if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       if(!(empty($_POST["usernameLogin"])) && !(empty($_POST["passwordLogin"]))){
-        $myusername = mysqli_real_escape_string($db,$_POST['usernameLogin']); // real_escape_string fa un filtro sui dati
+        $myusername = mysqli_real_escape_string($db,$_POST['usernameLogin']); // Escape special characters in strings
         $mypassword = mysqli_real_escape_string($db,$_POST['passwordLogin']);
 
         // Prepared statement for login
@@ -19,9 +18,8 @@
         $result = mysqli_fetch_assoc($result);
         $hashed_password = $result["password"];
         echo $result["password"];
-        if(password_verify($mypassword, $hashed_password)) {
+        if(password_verify($mypassword, $hashed_password)) { // verify if the password is correct
           $_SESSION['login_user'] = $myusername;
-          echo "ciao";
           if ($result["ruolo"] == "admin"){
             header("location: welcome_admin.php");// redirect to welcome page for admin
           }else{
@@ -38,7 +36,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
     <title>Esposizioni cani e gatti</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -111,7 +108,7 @@
     <div id="story" class="container text-center">
       <h3>Super Animals</h3>
       <p><em>Noi amiamo gli animali!</em></p>
-      <p>Tutto è iniziato con il sogno del nostro fondatore Bonfante Stefano, un vero e proprio amante degli animali, che insieme al nostro staff ha reso possibile il sogno di molti animali, ovvero quello di partecipare a dei veri e propri concorsi di bellezza. Dal 2021 infatti è possibile iscrivere il proprio amico ai concorsi che si terranno regolarmente su tutto il territorio nazionale.</p>
+      <p>Tutto è iniziato con il sogno del nostro fondatore Bonfante Stefano, un vero e proprio amante degli animali, che insieme al nostro staff ha reso possibile il sogno di molti animali, ovvero quello di partecipare a dei veri e propri concorsi di bellezza. Dal 2021 infatti è possibile iscrivere il proprio amico ai concorsi che si terranno regolarmente su tutto il territorio nazionale italiano.</p>
       <br>
       <div class="row">
         <div class="col-sm-4">

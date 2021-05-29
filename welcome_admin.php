@@ -23,7 +23,6 @@ if(isset($_POST["confermaConcorso"])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
   <title>Concorsi esposizioni cani e gatti</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
